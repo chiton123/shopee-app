@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageviewdahuy"
+        android:layout_margin="5dp"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtensanphamdahuy"
+        android:text="ten san pham"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/imageviewdahuy"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewsoluongdahuy"
+        android:layout_toRightOf="@id/imageviewdahuy"
+        android:layout_below="@id/textviewtensanphamdahuy"
+        android:text="200"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewgiasanphamdahuy"
+        android:text="100000"
+        android:layout_toRightOf="@id/imageviewdahuy"
+        android:layout_below="@id/textviewsoluongdahuy"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtongthanhtoandahuy"
+        android:layout_below="@id/textviewgiasanphamdahuy"
+        android:layout_toRightOf="@id/imageviewdahuy"
+        android:text="tong thanh toan"
+        ></TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/textviewtongthanhtoandahuy"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đã hủy bởi bạn"
+            ></TextView>
+        <Button
+            android:layout_marginLeft="60dp"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonmualai"
+            android:text="Mua lại"
+            android:background="#F86335"
+            android:textColor="#FFFFFF"
+            ></Button>
+    </LinearLayout>
+
+
+</RelativeLayout>

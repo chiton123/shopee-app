@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageviewchoxacnhan"
+        android:layout_margin="5dp"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtensanphamchoxacnhan"
+        android:text="Ten san pham"
+        android:layout_toRightOf="@id/imageviewchoxacnhan"
+        android:layout_margin="5dp"
+        android:textSize="15sp"
+        android:textColor="#101010"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="So luong"
+        android:textSize="15sp"
+        android:textColor="#101010"
+        android:id="@+id/textviewsoluongchoxacnhan"
+        android:layout_below="@id/textviewtensanphamchoxacnhan"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        ></TextView>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewgiasanphamChoXacnhan"
+        android:text="Gia"
+        android:textSize="15sp"
+        android:textColor="#101010"
+        android:layout_below="@id/textviewsoluongchoxacnhan"
+        android:layout_alignParentRight="true"
+        ></TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tong thanh toan"
+        android:id="@+id/textviewtongthanhtoanChoxacnhan"
+        android:layout_below="@id/imageviewchoxacnhan"
+        android:layout_alignParentRight="true"
+        android:textSize="15sp"
+        android:textColor="#101010"
+        ></TextView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đang xử lý"
+        android:layout_below="@id/textviewtongthanhtoanChoxacnhan"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:focusable="false"
+        android:layout_marginTop="5dp"
+        ></Button>
+</RelativeLayout>

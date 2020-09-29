@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/vinhlong"
+        android:title="Vĩnh Long"
+        ></item>
+    <item android:id="@+id/cantho"
+        android:title="Cần Thơ"
+        ></item>
+    <item android:id="@+id/angiang"
+        android:title="An Giang"
+        ></item>
+</menu>

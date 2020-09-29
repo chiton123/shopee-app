@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_home"
+    tools:context=".ui.Fragment.HomeFragment">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/abc"
+        android:background="#FB4810"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbarMain"
+            app:title="SHOPEE"
+            app:titleTextColor="#FAFAF7"
+            ></androidx.appcompat.widget.Toolbar>
+        <SearchView
+            android:layout_below="@id/toolbarMain"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/searchview"
+            ></SearchView>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <FrameLayout
+        android:layout_below="@id/abc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ViewFlipper
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/viewfliper"
+                    ></ViewFlipper>
+                <TextView
+                    android:layout_below="@id/viewfliper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Danh mục"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:id="@+id/textvewdanhmuc"
+                    ></TextView>
+                <HorizontalScrollView
+                    android:layout_below="@id/textvewdanhmuc"
+                    android:id="@+id/hori"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:id="@+id/frame123"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp">
+
+                        <LinearLayout
+                            android:layout_width="650dp"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <GridView
+                                android:id="@+id/gridviewhome"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_margin="4dp"
+                                android:columnWidth="100dp"
+                                android:gravity="center"
+                                android:horizontalSpacing="5dp"
+                                android:numColumns="6"
+                                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                                android:scrollbarAlwaysDrawVerticalTrack="true"
+                                android:scrollbars="horizontal"
+                                android:stretchMode="none"
+                                android:verticalSpacing="5dp"></GridView>
+                        </LinearLayout>
+                    </FrameLayout>
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sản phẩm mới nhất"
+                    android:id="@+id/textviewmoinhat"
+                    android:layout_below="@id/hori"
+                    android:layout_marginTop="10dp"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycleview"
+                    android:layout_below="@id/textviewmoinhat"
+                    ></androidx.recyclerview.widget.RecyclerView>
+
+            </RelativeLayout>
+        </ScrollView>
+    </FrameLayout>
+
+
+
+</RelativeLayout>

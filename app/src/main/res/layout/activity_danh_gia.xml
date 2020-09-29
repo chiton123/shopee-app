@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.ui.main.DanhGiaActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbardanhgia"
+        android:background="#66C0EC"
+        ></androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:layout_below="@id/toolbardanhgia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ĐÁNH GIÁ SẢN PHẨM CỦA SHOP"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textviewa"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn có hài lòng với sản phẩm"
+        android:layout_below="@id/textviewa"
+        android:textSize="20sp"
+        android:id="@+id/textviewb"
+        ></TextView>
+
+    <RatingBar
+        android:id="@+id/ratingbardanhgia"
+        android:layout_width="252dp"
+        android:layout_height="46dp"
+        android:layout_below="@id/textviewb"
+        android:numStars="5"
+        android:scaleX="0.5"
+        android:scaleY="0.5"></RatingBar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhận xét"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:id="@+id/textviewd"
+        android:layout_below="@id/ratingbardanhgia"
+        ></TextView>
+    <EditText
+        android:layout_width="380dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_danhgia"
+        android:gravity="top|left"
+        android:id="@+id/edittextdanhgia"
+        android:inputType="textMultiLine"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:lines="6"
+        android:layout_below="@id/textviewd"
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:scrollHorizontally="false" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/edittextdanhgia"
+        >
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttondanhgiaDanhGia"
+            android:text="ĐÁNH GIÁ"
+            android:layout_below="@id/edittextdanhgia"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button"
+            />
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonHuyDanhGia"
+            android:text="HỦY"
+            android:layout_below="@id/edittextdanhgia"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/custom_button"
+            android:layout_toRightOf="@id/buttondanhgiaDanhGia"
+            ></Button>
+    </LinearLayout>
+</RelativeLayout>

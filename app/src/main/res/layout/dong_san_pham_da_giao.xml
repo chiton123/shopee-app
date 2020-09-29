@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imagviewdagiao"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEN SAN PHAM"
+        android:id="@+id/textviewtensanphamdagiao"
+        android:layout_toRightOf="@id/imagviewdagiao"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="ĐÁNH GIÁ"
+        android:id="@+id/buttondanhgia"
+        android:layout_toRightOf="@id/imagviewdagiao"
+        android:layout_below="@id/textviewtensanphamdagiao"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+
+</RelativeLayout>

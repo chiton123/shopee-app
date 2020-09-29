@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <co.ceryle.radiorealbutton.library.RadioRealButtonGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:rrbg_animateTexts_enter="overshoot"
+        app:rrbg_animateSelectorDuration="100"
+        app:rrbg_animateSelector="2"
+        app:rrbg_dividerColor="#1B1B18"
+        app:rrbg_dividerSize="1dp"
+        app:rrbg_radius="10dp"
+        app:rrbg_selectorColor="#AEAEA1"
+        app:rrbg_selectorSize="4dp"
+        android:id="@+id/buttongroup"
+        >
+        <co.ceryle.radiorealbutton.library.RadioRealButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:rrb_ripple="true"
+        app:rrb_rippleColor="#4a4a4a"
+        app:rrb_text="Mới nhất"
+        android:id="@+id/radiobuttonmoinhat"
+        ></co.ceryle.radiorealbutton.library.RadioRealButton>
+        <co.ceryle.radiorealbutton.library.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_ripple="true"
+            app:rrb_rippleColor="#4a4a4a"
+            app:rrb_text="Bán chạy"
+            android:id="@+id/radiobuttonbanchay"
+            ></co.ceryle.radiorealbutton.library.RadioRealButton>
+        <co.ceryle.radiorealbutton.library.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_ripple="true"
+            app:rrb_rippleColor="#4a4a4a"
+            app:rrb_text="Giá"
+            android:id="@+id/radiobuttonsapxeptheogia"
+            ></co.ceryle.radiorealbutton.library.RadioRealButton>
+
+    </co.ceryle.radiorealbutton.library.RadioRealButtonGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleviewSanPhamBanChayShop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

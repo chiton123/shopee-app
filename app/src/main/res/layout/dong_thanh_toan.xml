@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+`   <ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:id="@+id/imageviewhinhanhthanhtoan"
+    android:layout_margin="5dp"
+    ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtensanphamthanhtoan"
+        android:layout_toRightOf="@id/imageviewhinhanhthanhtoan"
+        android:text="ten san pham"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#EA2E29"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewsoluongthanhtoan"
+        android:text="10"
+        android:layout_toRightOf="@id/imageviewhinhanhthanhtoan"
+        android:layout_below="@id/textviewtensanphamthanhtoan"
+        android:textSize="20sp"
+        android:textColor="#171716"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewgiadonhangthanhtoan"
+        android:text="Gia"
+        android:layout_toRightOf="@id/imageviewhinhanhthanhtoan"
+        android:layout_below="@id/textviewsoluongthanhtoan"
+        android:textSize="20sp"
+        android:textColor="#F11867"
+        ></TextView>
+
+</RelativeLayout>

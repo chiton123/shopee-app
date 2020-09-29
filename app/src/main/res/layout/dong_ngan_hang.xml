@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/linearnganhang"
+    android:layout_gravity="center">
+    <ImageView
+        android:layout_margin="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageviewhinhnganhang"
+        ></ImageView>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ten ngan hang"
+        android:textSize="16sp"
+        android:textColor="#0E0E0D"
+        android:id="@+id/textviewtengnganhang"
+        ></TextView>
+
+</LinearLayout>

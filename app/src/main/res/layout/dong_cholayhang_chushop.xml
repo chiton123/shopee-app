@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ten nguoi mua"
+        android:id="@+id/textviewtennguoimuachushop"
+        android:textSize="20sp"
+        ></TextView>
+    <ImageView
+        android:layout_below="@id/textviewtennguoimuachushop"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageviewcholayhangchushop"
+        android:layout_margin="10dp"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtensanphancholayhangchushop"
+        android:text="Ten san pham"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/imageviewcholayhangchushop"
+        android:layout_margin="10dp"
+        android:layout_below="@id/textviewtennguoimuachushop"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewsoluongcholayhangchushop"
+        android:layout_below="@id/textviewtensanphancholayhangchushop"
+        android:text="X30"
+        android:layout_toRightOf="@id/imageviewcholayhangchushop"
+        android:layout_margin="10dp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewgiatridonhangchushop"
+        android:text="30000"
+        android:layout_below="@id/textviewsoluongcholayhangchushop"
+        android:layout_toRightOf="@id/imageviewcholayhangchushop"
+        android:layout_margin="10dp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtongthanhtoancholayhangchushop"
+        android:text="Tong thanh toan"
+        android:textSize="20sp"
+        android:layout_below="@id/textviewgiatridonhangchushop"
+        android:layout_toRightOf="@id/imageviewcholayhangchushop"
+        ></TextView>
+    <Button android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:id="@+id/buttonchuanbihang"
+        android:text="Chuẩn bị hàng"
+        android:background="#f55a07"
+        android:layout_below="@id/textviewtongthanhtoancholayhangchushop"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        ></Button>
+</RelativeLayout>

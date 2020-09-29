@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:padding="10dp"
+    android:textColor="#232321"
+    android:textStyle="bold"
+    android:text="số lượng"
+    android:textSize="20sp"
+    android:layout_height="wrap_content">
+
+</TextView>

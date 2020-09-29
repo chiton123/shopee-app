@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.ui.main.DiaChiNhanHangActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FBF8F8"
+        android:id="@+id/toolbardiachinhanhang"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa chỉ mới"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOÀN THÀNH    "
+                android:textColor="#F64A15"
+                android:textSize="16sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/textviewhoanthanh"
+                ></TextView>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffff"
+        android:hint="Tên"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        android:id="@+id/edittexttenkh"
+        ></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffff"
+        android:hint="Số điện thoại"
+        android:layout_marginTop="5dp"
+        android:inputType="number"
+        android:id="@+id/edittextsodtkh"
+        ></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffff"
+        android:hint="Thành phố"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        android:id="@+id/edittextthanhphokh"
+        android:drawableRight="@drawable/right4"
+        ></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="#ffff"
+        android:hint="Quận"
+        android:inputType="text"
+        android:id="@+id/edittextquankh"
+        android:drawableRight="@drawable/right4"
+        ></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffff"
+        android:inputType="text"
+        android:hint="Số nhà, tên đường"
+        android:layout_marginTop="5dp"
+        android:id="@+id/edittextsonhakh"
+        ></EditText>
+</LinearLayout>

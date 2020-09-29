@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/searchviewmenu"
+        android:icon="@drawable/search1"
+        app:showAsAction="ifRoom"
+        android:title="Search"
+        ></item>
+    <item android:id="@+id/filtermenu"
+        android:icon="@drawable/filter"
+        app:showAsAction="ifRoom"
+        android:title="filter"
+        ></item>
+    <item android:id="@+id/more"
+        android:title="more"
+        ></item>
+
+
+</menu>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ten nguoi mua"
+        android:textSize="15sp"
+        android:textColor="#E62B1D"
+        android:id="@+id/textviewTennguoimua"
+        />
+
+    <RatingBar
+        android:id="@+id/ratingbarnguoimua"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textviewTennguoimua"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"></RatingBar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DANH GIA"
+        android:id="@+id/textviewdanhgianguoimua"
+        android:layout_below="@id/ratingbarnguoimua"
+        android:textColor="#10100F"
+        android:textSize="16sp"
+        ></TextView>
+</RelativeLayout>

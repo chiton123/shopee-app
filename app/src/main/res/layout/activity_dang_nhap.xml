@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="ĐĂNG NHẬP"
+        android:background="#AFCFE8"
+        android:id="@+id/toolbardangnhap"
+        />
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_marginTop="50dp"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:hint="Email"
+            android:inputType="text"
+            android:id="@+id/edittexttendangnhap"
+            />
+        <EditText
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:hint="Mật khẩu"
+            android:layout_below="@id/edittexttendangnhap"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/edittextmatkhau"
+            android:inputType="textPassword"
+            />
+        <Button
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:text="Đăng nhập"
+            android:layout_marginTop="20dp"
+            android:background="#F4665B"
+            android:id="@+id/buttonDangNhap"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/edittextmatkhau"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:textSize="15sp"
+            android:textColor="#03A9F4"
+            android:id="@+id/textviewdangki"
+            android:layout_below="@id/buttonDangNhap"
+            android:layout_marginLeft="10dp"
+            />
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="abc"
+            android:id="@+id/abcd"
+            android:textSize="20sp"
+            ></TextView>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

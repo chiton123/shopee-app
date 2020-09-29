@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageviewdanggiaochushop"
+        android:layout_margin="10dp"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ten mat hang"
+        android:textSize="20sp"
+        android:id="@+id/textviewtensanphamdanggiaochushop"
+        android:layout_toRightOf="@id/imageviewdanggiaochushop"
+        android:layout_margin="5dp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="So luong"
+        android:textSize="20sp"
+        android:id="@+id/textviewsoluongdanggiaochushop"
+        android:layout_toRightOf="@id/imageviewdanggiaochushop"
+        android:layout_below="@id/textviewtensanphamdanggiaochushop"
+        android:layout_margin="5dp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gia"
+        android:textSize="20sp"
+        android:id="@+id/textviewgiasanphamdanggiaochushop"
+        android:layout_toRightOf="@id/imageviewdanggiaochushop"
+        android:layout_below="@id/textviewsoluongdanggiaochushop"
+        android:layout_margin="5dp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tong thanh toan"
+        android:textSize="20sp"
+        android:id="@+id/textviewtongthanhtoandanggiaochushop"
+        android:layout_toRightOf="@id/imageviewdanggiaochushop"
+        android:layout_below="@id/textviewgiasanphamdanggiaochushop"
+        android:layout_margin="5dp"
+        ></TextView>
+</RelativeLayout>

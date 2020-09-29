@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageviewdanggiaonguoimua"
+        android:layout_margin="5dp"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewtensanphamdanggiaonguoimua"
+        android:text="Ten san pham"
+        android:layout_toRightOf="@id/imageviewdanggiaonguoimua"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        ></TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="So luong"
+        android:textSize="20sp"
+        android:id="@+id/textviewsoluongdanggiaonguoimua"
+        android:layout_below="@id/textviewtensanphamdanggiaonguoimua"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewgiasanphamdanggiaonguoimua"
+        android:text="Gia"
+        android:textSize="20sp"
+        android:layout_below="@id/textviewsoluongdanggiaonguoimua"
+        android:layout_alignParentRight="true"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tong thanh toan"
+        android:id="@+id/textviewtongthanhtoandanggiaonguoimua"
+        android:layout_below="@id/textviewgiasanphamdanggiaonguoimua"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        ></TextView>
+    <Button
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ĐÃ ĐƯỢC NHẬN HÀNG"
+        android:background="#F6332F"
+        android:layout_below="@id/textviewtongthanhtoandanggiaonguoimua"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:id="@+id/buttondaduocnhanhangnguoimua"
+        ></Button>
+    <Button
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YÊU CẦU TRẢ HÀNG/HOÀN TIỀN"
+        android:background="#F6332F"
+        android:layout_below="@id/buttondaduocnhanhangnguoimua"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/buttonyeucautrahang"
+        ></Button>
+</RelativeLayout>

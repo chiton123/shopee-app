@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.ui.main.SearchOnShop">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FD5B29"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbarsearchonshop"
+            ></androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <co.ceryle.radiorealbutton.library.RadioRealButtonGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:rrbg_animateTexts_enter="overshoot"
+        app:rrbg_animateSelectorDuration="100"
+        app:rrbg_animateSelector="2"
+        app:rrbg_dividerColor="#1B1B18"
+        app:rrbg_dividerSize="1dp"
+        app:rrbg_radius="10dp"
+        app:rrbg_selectorColor="#AEAEA1"
+        app:rrbg_selectorSize="4dp"
+        android:id="@+id/buttongroup"
+        >
+        <co.ceryle.radiorealbutton.library.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_ripple="true"
+            app:rrb_rippleColor="#4a4a4a"
+            app:rrb_text="Mới nhất"
+            android:id="@+id/radiobuttonmoinhatsearchshop"
+            ></co.ceryle.radiorealbutton.library.RadioRealButton>
+        <co.ceryle.radiorealbutton.library.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_ripple="true"
+            app:rrb_rippleColor="#4a4a4a"
+            app:rrb_text="Bán chạy"
+            android:id="@+id/radiobuttonbanchaysearchshop"
+            ></co.ceryle.radiorealbutton.library.RadioRealButton>
+        <co.ceryle.radiorealbutton.library.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_ripple="true"
+            app:rrb_rippleColor="#4a4a4a"
+            app:rrb_text="Giá"
+            android:id="@+id/radiobuttonsapxeptheogiasearchshop"
+            ></co.ceryle.radiorealbutton.library.RadioRealButton>
+
+    </co.ceryle.radiorealbutton.library.RadioRealButtonGroup>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycleviewsearchonshop"
+        ></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

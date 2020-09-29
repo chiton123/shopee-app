@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/giohang"
+        android:icon="@drawable/card2"
+        app:showAsAction="always"
+        app:actionLayout="@layout/custom_action_item_layout"
+        android:title="cart"
+        ></item>
+    <item android:id="@+id/chat"
+        android:icon="@drawable/chat3"
+        app:showAsAction="always"
+        android:title="chat"
+        ></item>
+    <item android:id="@+id/shopcuatoi"
+        android:title="Shop của tôi"
+        app:showAsAction="always"
+        ></item>
+</menu>

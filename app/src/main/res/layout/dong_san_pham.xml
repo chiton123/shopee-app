@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:background="#ff0"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textColor="#EF2722"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Giảm"
+                            android:id="@+id/textviewtengiamgia"
+                            android:textSize="20sp"
+                            android:layout_alignParentRight="true"
+                            ></TextView>
+                        <TextView
+                            android:textColor="#EF2722"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textviewsophantramgiamgia"
+                            android:layout_below="@id/textviewtengiamgia"
+                            android:layout_alignParentRight="true"
+                            android:text="10%"
+                            android:textSize="20sp"
+                            ></TextView>
+                    </LinearLayout>
+                </RelativeLayout>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/imageviewsanpham"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ten san pham"
+                    android:textSize="15sp"
+                    android:textColor="#1E1E1B"
+                    android:textStyle="bold"
+                    android:maxLines="4"
+                    android:id="@+id/textviewtensanpham"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gia san pham"
+                        android:textSize="15sp"
+                        android:textColor="#BC3329"
+                        android:id="@+id/textviewgiasanpham"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số lượng đã bán: "
+                            android:textSize="15sp"
+                            android:textColor="#BC3329"
+                            android:id="@+id/textviewtensoluong"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textSize="15sp"
+                            android:textColor="#BC3329"
+                            android:id="@+id/textviewsoluongdaban"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <com.like.LikeButton
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:icon_type="heart"
+                            app:icon_size="15dp"
+                            android:id="@+id/like"
+                            ></com.like.LikeButton>
+                    </LinearLayout>
+                </LinearLayout>
+                
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+
+
+

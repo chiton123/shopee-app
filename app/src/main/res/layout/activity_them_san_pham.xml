@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.ui.main.ThemSanPhamActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:background="#fff"
+        app:title="Thêm sản phẩm"
+        ></androidx.appcompat.widget.Toolbar>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Tên sản phẩm"
+        android:id="@+id/edittexttensp"
+        ></EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Danh mục"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:layout_weight="3"
+            ></TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:hint="Tên loại"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:gravity="end"
+            android:id="@+id/tendanhmuc"
+            ></TextView>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/right2"
+            android:id="@+id/imageviewright"
+            ></ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Thương hiệu"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:layout_weight="3"
+            ></TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:hint="Tên thương hiệu"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:gravity="end"
+            android:id="@+id/tenthuonghieu"
+            ></TextView>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/right2"
+            android:id="@+id/imageviewrightthuonghieu"
+            ></ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Link ảnh"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:layout_weight="3"
+            ></TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:hint="URL ảnh"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:gravity="end"
+            android:id="@+id/urlanh"
+            ></TextView>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/right2"
+            android:id="@+id/imageviewrightanh"
+            ></ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Giá"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:layout_weight="6"
+            ></TextView>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@drawable/custom_edittext_themsp"
+            android:hint="Đặt giá"
+            android:id="@+id/gia"
+            ></EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Kho hàng"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:layout_weight="6"
+            ></TextView>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@drawable/custom_edittext_themsp"
+            android:hint="Số lượng"
+            android:id="@+id/soluong"
+            ></EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Vận chuyển"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:layout_weight="3"
+            ></TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:hint="Kênh vận chuyển"
+            android:textColor="#040403"
+            android:textSize="16sp"
+            android:gravity="end"
+            android:id="@+id/kenhvanchuyen"
+            ></TextView>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/right2"
+            android:id="@+id/imageviewrightvanchuyen"
+            ></ImageView>
+    </LinearLayout>
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:id="@+id/buttondang"
+        android:text="Đăng"
+        android:background="@drawable/custom_button_giohang"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        ></Button>
+
+</LinearLayout>
