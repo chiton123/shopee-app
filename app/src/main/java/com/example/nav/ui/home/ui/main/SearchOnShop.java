@@ -54,7 +54,7 @@ public class SearchOnShop extends AppCompatActivity {
     private void anhxa() {
         toolbar = (Toolbar) findViewById(R.id.toolbarsearchonshop);
         arrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(getApplicationContext(), arrayList);
+        adapter = new SanPhamAdapter(recyclerView,this, arrayList);
         recyclerView = (RecyclerView) findViewById(R.id.recycleviewsearchonshop);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

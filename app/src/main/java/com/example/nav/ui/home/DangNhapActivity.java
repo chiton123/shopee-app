@@ -74,6 +74,7 @@ public class DangNhapActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 loginButton.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), ""+ loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
                 result(loginResult.getAccessToken());
 
             }
@@ -96,42 +97,42 @@ public class DangNhapActivity extends AppCompatActivity {
             public void onCompleted(JSONObject object, GraphResponse response) {
                 Log.d("JSON", response.getJSONObject().toString());
                 try {
-                    abcd.setText(object.getString("name") + object.getString("email"));
+//                    abcd.setText(object.getString("name") + object.getString("link"));
                     name = object.getString("name");
                     email = object.getString("email");
-                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, urlfacebooklogin,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                                    MainActivity.kiemtralogin = 1;
-                                    MainActivity.username = email;
-                                    MainActivity.tennguoidung = name;
-                                    MainActivity.facebooklogin = 1;
-                                    MainActivity.iduser = Integer.parseInt(response.toString());
-                                    finish();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                    ){
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String,String> map = new HashMap<>();
-                            map.put("email", email);
-                            map.put("name", name);
-                            return map;
-                        }
-                    };
-                    requestQueue.add(stringRequest);
+//                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//                    StringRequest stringRequest = new StringRequest(Request.Method.POST, urlfacebooklogin,
+//                            new Response.Listener<String>() {
+//                                @Override
+//                                public void onResponse(String response) {
+//                                    Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+//                                    MainActivity.kiemtralogin = 1;
+//                                    MainActivity.username = email;
+//                                    MainActivity.tennguoidung = name;
+//                                    MainActivity.facebooklogin = 1;
+//                                    MainActivity.iduser = Integer.parseInt(response.toString());
+//                                    finish();
+//                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                                    startActivity(intent);
+//                                }
+//                            },
+//                            new Response.ErrorListener() {
+//                                @Override
+//                                public void onErrorResponse(VolleyError error) {
+//                                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                    ){
+//                        @Override
+//                        protected Map<String, String> getParams() throws AuthFailureError {
+//                            Map<String,String> map = new HashMap<>();
+//                            map.put("email", email);
+//                            map.put("name", name);
+//                            return map;
+//                        }
+//                    };
+//                    requestQueue.add(stringRequest);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -159,10 +160,41 @@ public class DangNhapActivity extends AppCompatActivity {
 //        }
         Bundle parameters = new Bundle();
         parameters.putString("fields", "name,email");
+
         graphRequest.setParameters(parameters);
         graphRequest.executeAsync();
     }
 
+
+
+    public  void getShopeeWallet() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.urlviairpay,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        if(!response.equals("0")){
+                            MainActivity.airpaymoney = Integer.parseInt(response);
+                            Toast.makeText(getApplicationContext(), MainActivity.airpaymoney + "", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("iduser", String.valueOf(MainActivity.iduser));
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
     private void actionBar() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -195,7 +227,8 @@ public class DangNhapActivity extends AppCompatActivity {
                                         MainActivity.kiemtralogin = 1;
                                         MainActivity.username = tenDangNhap;
                                         MainActivity.tennguoidung = tenDangNhap;
-                                        MainActivity.iduser = Integer.parseInt(response.toString());
+                                            MainActivity.iduser = Integer.parseInt(response.toString());
+                                        getShopeeWallet();
                                         finish();
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

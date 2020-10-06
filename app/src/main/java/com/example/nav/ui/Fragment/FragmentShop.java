@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,9 +28,11 @@ import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Model.SanPham;
 import com.example.nav.ui.Adapter.SanPhamAdapter;
+import com.example.nav.ui.home.ChiTietSanPhamActivity;
 import com.example.nav.ui.home.ui.main.EvaluationShowActivity;
 import com.example.nav.ui.home.ui.main.MapsActivity;
 import com.example.nav.ui.home.ui.main.ShopActivity;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +46,7 @@ public class FragmentShop extends Fragment {
     SanPhamAdapter adapter;
     ArrayList<SanPham> arrayListgoiy;
     RecyclerView recyclerViewgoiy;
-    TextView txtsosao;
+    TextView txtsosao, txtsosanpham;
     String urlsanphamgoiy = MainActivity.urlsuggestitem;
     ImageView imgdanhgia;
     int idsp = 0;
@@ -60,11 +64,12 @@ public class FragmentShop extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewgoiy.setLayoutManager(layoutManager);
         recyclerViewgoiy.setItemAnimator(new DefaultItemAnimator());
-        adapter = new SanPhamAdapter(getActivity(), arrayListgoiy);
+        adapter = new SanPhamAdapter(recyclerViewgoiy,getActivity(), arrayListgoiy);
         recyclerViewgoiy.setAdapter(adapter);
         location = (ImageView) view.findViewById(R.id.location);
         imgdanhgia = (ImageView) view.findViewById(R.id.imageviewdanhgiashop);
         txtsosao = (TextView) view.findViewById(R.id.textviewdanhgiashop);
+        txtsosanpham = (TextView) view.findViewById(R.id.soluong);
         eventAddress();
         getDataSuggestItem();
         idsp = ShopActivity.idsanpham;
@@ -75,7 +80,40 @@ public class FragmentShop extends Fragment {
     public void getNumberStar(float sosao) {
         txtsosao.setText(sosao+"/5");
     }
+    public void getThongtinshop() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.urlshop,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i=0; i < jsonArray.length(); i++){
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                txtsosanpham.setText(object.getInt("soluongsanpham") + "");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("idcuahang", String.valueOf(ShopActivity.idcuahang));
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+
+    }
     public void evaluationEvent() {
         imgdanhgia.setOnClickListener(new View.OnClickListener() {
             @Override

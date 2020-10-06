@@ -1,6 +1,7 @@
 package com.example.nav.ui.home.ui.main;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -13,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +35,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nav.MainActivity;
 import com.example.nav.R;
+import com.example.nav.ui.Interface.ILoadMore;
 import com.example.nav.ui.Model.SanPham;
 import com.example.nav.ui.Adapter.SanPhamAdapter;
 import com.google.android.material.navigation.NavigationView;
@@ -56,20 +61,38 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SanPhamAdapter adapter;
     ArrayList<SanPham> arrayList;
+    ArrayList<SanPham> arraylistPrice;
     ArrayList<SanPham> arrayListplace;
+    ArrayList<SanPham> arrayListShip;
     String urlhienthi = MainActivity.urlkindofproduct;
     String urlStoreLocation = MainActivity.urlfilterstore;
+    String urlship = MainActivity.urlfiltership;
     int idcuahang = 0;
     int dem = 0;
-    int a = 0;
+    int tang = 0, giam = 1;
+    // so luong san pham trong loai do
+    int max = 0;
     private Menu menu;
     EditText editpricemin, editpricemax;
-    Button btnprice100k, btnprice200k, btnpriceover200k, btnreset, btnapply;
+    Button btnprice100k, btnprice1_300k, btnpriceover300k, btnreset, btnapply;
+    Button btnviettelpost, btngiaohangnhanh, btngiaotietkiem, btnjtexpress;
     RadioRealButtonGroup realButtonGroup;
-    RadioRealButton btnmoinhat, btnbanchay, btngia;
+    RadioRealButton btnmoinhat, btnbanchay, btngiatang, btngiagiam;
     Button btncantho, btntphcm, btnvinhlong, btnhanoi;
     int idloaisp = 0;
-    int x = 0;
+    int page = 1;
+    // postion cua realbutton
+    int pos = 0;
+    // loc theo gia
+    int filter_gia = 0;
+    // loc theo noi ban
+    int filter_noiban = 0;
+    // loc theo don vi van chuyen
+    int filter_vanchuyen = 0;
+    // lan dau tien
+    int first = 0;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,139 +100,99 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
         anhxa();
         actionBar();
         EventDefaultButtonColor();
-        getData(0, ++a);
-        EventFilter();
+
+
+        if(first == 0){
+            getData(0, page);
+            loadMore();
+            first = 1;
+        }
+
+
         EventRealButton();
+        eventFilterPrice();
+        eventFilterPlace();
+        eventFilterShip();
+        ButtonApply();
+
 
     }
-    private void EventDefaultButtonColor() {
-        btnvinhlong.setBackgroundResource(android.R.drawable.btn_default);
-        btncantho.setBackgroundResource(android.R.drawable.btn_default);
-        btnhanoi.setBackgroundResource(android.R.drawable.btn_default);
-        btntphcm.setBackgroundResource(android.R.drawable.btn_default);
-        btnprice100k.setBackgroundResource(android.R.drawable.btn_default);
-        btnpriceover200k.setBackgroundResource(android.R.drawable.btn_default);
-        btnprice200k.setBackgroundResource(android.R.drawable.btn_default);
-        editpricemin.setText("");
-        editpricemax.setText("");
 
-    }
-    private void ButtonApply(){
-        btnapply.setOnClickListener(new View.OnClickListener() {
+    private void eventFilterShip() {
+        btnviettelpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editpricemin.getText().toString().length() != 0 && editpricemax.getText().toString().length() != 0){
-                    Integer x = Integer.parseInt(editpricemin.getText().toString());
-                    Integer y = Integer.parseInt(editpricemax.getText().toString());
-                    if(String.valueOf(x).length() != 0 || String.valueOf(y).length() != 0){
-                        for(int i=0; i < arrayList.size(); i++){
-                            if(arrayList.get(i).getGiasanpham() > y || arrayList.get(i).getGiasanpham() < x){
-                                arrayList.remove(i);
-                                i--;
-                            }
-                        }
-                    }
-                }
-                if(x > 0){
-                    ChechTheSame();
-                }
-
-                adapter.notifyDataSetChanged();
-                EventDefaultButtonColor();
-                if(drawerLayout.isDrawerOpen(GravityCompat.END)){
-                    drawerLayout.closeDrawer(GravityCompat.END);
-                }
-
-            }
-        });
-    }
-    private void EventRealButton() {
-        realButtonGroup.setOnClickedButtonPosition(new RadioRealButtonGroup.OnClickedButtonPosition() {
-            @Override
-            public void onClickedButtonPosition(int position) {
-                arrayList.clear();
-                adapter.notifyDataSetChanged();
-                if(position == 2){
-                    getData(position, ++a);
-                }else {
-                    getData(position, 0);
-                }
-            }
-        });
-
-    }
-    public void RecoveryData(){
-        arrayList.clear();
-        getData(0, ++a);
-    }
-    private void EventFilter() {
-        arrayListplace = new ArrayList<>();
-        btnprice100k.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=0; i < arrayList.size(); i++){
-                    if(arrayList.get(i).getGiasanpham() > 100000){
-                        arrayList.remove(i);
-                        i--;
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                btnprice100k.setBackgroundColor(YELLOW);
-                btnpriceover200k.setBackgroundResource(android.R.drawable.btn_default);
-                btnprice200k.setBackgroundResource(android.R.drawable.btn_default);
+                arrayListShip.clear();
+                filterShip(1);
+                filter_vanchuyen = 1;
+                btnviettelpost.setBackgroundColor(YELLOW);
+                btngiaohangnhanh.setBackgroundResource(android.R.drawable.btn_default);
+                btngiaotietkiem.setBackgroundResource(android.R.drawable.btn_default);
+                btnjtexpress.setBackgroundResource(android.R.drawable.btn_default);
                 ButtonApply();
             }
         });
-        btnprice200k.setOnClickListener(new View.OnClickListener() {
+        btnjtexpress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0; i < arrayList.size(); i++){
-                    if(arrayList.get(i).getGiasanpham() > 300000 || arrayList.get(i).getGiasanpham() < 100000){
-                        arrayList.remove(i);
-                        i--;
-                    }
-                }
-                btnprice200k.setBackgroundColor(YELLOW);
-                btnpriceover200k.setBackgroundResource(android.R.drawable.btn_default);
-                btnprice100k.setBackgroundResource(android.R.drawable.btn_default);
+                arrayListShip.clear();
+                filterShip(4);
+                filter_vanchuyen = 1;
+                btnjtexpress.setBackgroundColor(YELLOW);
+                btngiaohangnhanh.setBackgroundResource(android.R.drawable.btn_default);
+                btngiaotietkiem.setBackgroundResource(android.R.drawable.btn_default);
+                btnviettelpost.setBackgroundResource(android.R.drawable.btn_default);
                 ButtonApply();
             }
         });
-        btnpriceover200k.setOnClickListener(new View.OnClickListener() {
+        btngiaotietkiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0; i < arrayList.size(); i++){
-                    if(arrayList.get(i).getGiasanpham() < 300000){
-                        arrayList.remove(i);
-                        i--;
-                    }
-                }
-                btnpriceover200k.setBackgroundColor(YELLOW);
-                btnprice100k.setBackgroundResource(android.R.drawable.btn_default);
-                btnprice200k.setBackgroundResource(android.R.drawable.btn_default);
+                arrayListShip.clear();
+                filterShip(3);
+                filter_vanchuyen = 1;
+                btngiaotietkiem.setBackgroundColor(YELLOW);
+                btngiaohangnhanh.setBackgroundResource(android.R.drawable.btn_default);
+                btnviettelpost.setBackgroundResource(android.R.drawable.btn_default);
+                btnjtexpress.setBackgroundResource(android.R.drawable.btn_default);
                 ButtonApply();
             }
         });
+        btngiaohangnhanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                arrayListShip.clear();
+                filterShip(2);
+                filter_vanchuyen = 1;
+                btngiaohangnhanh.setBackgroundColor(YELLOW);
+                btnviettelpost.setBackgroundResource(android.R.drawable.btn_default);
+                btngiaotietkiem.setBackgroundResource(android.R.drawable.btn_default);
+                btnjtexpress.setBackgroundResource(android.R.drawable.btn_default);
+                ButtonApply();
+            }
+        });
+    }
+
+    private void eventFilterPlace() {
         btnhanoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filter_noiban = 1;
                 arrayListplace.clear();
                 FilterSalePlace("Hà Nội");
-                x++;
                 btnhanoi.setBackgroundColor(YELLOW);
                 btncantho.setBackgroundResource(android.R.drawable.btn_default);
                 btnvinhlong.setBackgroundResource(android.R.drawable.btn_default);
                 btntphcm.setBackgroundResource(android.R.drawable.btn_default);
                 ButtonApply();
-
             }
         });
         btntphcm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filter_noiban = 1;
                 arrayListplace.clear();
                 FilterSalePlace("TPHCM");
-                x++;
                 btntphcm.setBackgroundColor(YELLOW);
                 btncantho.setBackgroundResource(android.R.drawable.btn_default);
                 btnvinhlong.setBackgroundResource(android.R.drawable.btn_default);
@@ -220,54 +203,141 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
         btnvinhlong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filter_noiban = 1;
                 arrayListplace.clear();
                 FilterSalePlace("Vĩnh Long");
-                x++;
                 btnvinhlong.setBackgroundColor(YELLOW);
                 btncantho.setBackgroundResource(android.R.drawable.btn_default);
                 btnhanoi.setBackgroundResource(android.R.drawable.btn_default);
                 btntphcm.setBackgroundResource(android.R.drawable.btn_default);
                 ButtonApply();
+
             }
         });
         btncantho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filter_noiban = 1;
                 arrayListplace.clear();
                 FilterSalePlace("Cần Thơ");
-                x++;
                 btncantho.setBackgroundColor(YELLOW);
                 btnhanoi.setBackgroundResource(android.R.drawable.btn_default);
                 btnvinhlong.setBackgroundResource(android.R.drawable.btn_default);
                 btntphcm.setBackgroundResource(android.R.drawable.btn_default);
                 ButtonApply();
+
             }
         });
-        btnreset.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    private void eventFilterPrice() {
+        // kiem tra edittext min va max
+        btnprice100k.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventDefaultButtonColor();
-                getData(0, ++a);
+                filterPrice(0, 100000);
+                filter_gia = 1;
+                btnprice100k.setBackgroundColor(YELLOW);
+                btnprice1_300k.setBackgroundResource(android.R.drawable.btn_default);
+                btnpriceover300k.setBackgroundResource(android.R.drawable.btn_default);
+                ButtonApply();
             }
         });
-
+        btnprice1_300k.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterPrice(100000,300000);
+                filter_gia = 1;
+                btnprice1_300k.setBackgroundColor(YELLOW);
+                btnprice100k.setBackgroundResource(android.R.drawable.btn_default);
+                btnpriceover300k.setBackgroundResource(android.R.drawable.btn_default);
+                ButtonApply();
+            }
+        });
+        btnpriceover300k.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterPrice(300000, 10000000);
+                filter_gia = 1;
+                btnpriceover300k.setBackgroundColor(YELLOW);
+                btnprice1_300k.setBackgroundResource(android.R.drawable.btn_default);
+                btnprice100k.setBackgroundResource(android.R.drawable.btn_default);
+                ButtonApply();
+            }
+        });
     }
-    public void ChechTheSame(){
-        for(int i=0; i < arrayList.size(); i++){
-            int check = 0;
-            for(int j=0; j < arrayListplace.size() ; j++){
-                if(arrayList.get(i).getIdsanpham() == arrayListplace.get(j).getIdsanpham()){
-                    check++;
+
+    private void filterPrice(int min, int max) {
+        arraylistPrice.clear();
+        if(!editpricemin.getText().toString().equals("") && !editpricemax.getText().toString().equals("")){
+            int x = Integer.parseInt(editpricemin.getText().toString());
+            int y = Integer.parseInt(editpricemax.getText().toString());
+            for(int i=0; i < arrayList.size(); i++){
+                if(arrayList.get(i).getGiasanpham() >= x && arrayList.get(i).getGiasanpham() <=y){
+                    arraylistPrice.add(arrayList.get(i));
                 }
             }
-            if(check == 0){
-                arrayList.remove(i);
-                i--;
-                adapter.notifyDataSetChanged();
-            }
-
+            filter_gia = 1;
         }
+        if(min != -1 && max != -1){
+            for(int i=0; i < arrayList.size(); i++){
+                if(arrayList.get(i).getGiasanpham() >= min && arrayList.get(i).getGiasanpham() <= max){
+                    arraylistPrice.add(arrayList.get(i));
+                }
+            }
+        }
+
     }
+    private void filterShip(final int xyz){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlship,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response != null){
+                        //    Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for(int i=0; i < jsonArray.length(); i++){
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    arrayListShip.add(new SanPham(
+                                            object.getInt("id"),
+                                            object.getString("name"),
+                                            object.getString("image"),
+                                            object.getInt("price"),
+                                            object.getInt("idstore"),
+                                            object.getInt("idtypeproduct"),
+                                            object.getInt("salenumber"),
+                                            object.getInt("number"),
+                                            object.getInt("discount")
+                                    ));
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("idloaisp", String.valueOf(idloaisp));
+                map.put("idship", String.valueOf(xyz));
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
     public void FilterSalePlace(final String noiban){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlStoreLocation,
@@ -289,7 +359,7 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
                                         object.getInt("number"),
                                         object.getInt("discount")
                                 ));
-                              //  adapter.notifyDataSetChanged();
+                                //  adapter.notifyDataSetChanged();
                             }
 
                         } catch (JSONException e) {
@@ -314,6 +384,143 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
+
+    private void ButtonApply(){
+        btnapply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                if(filter_gia == 0){
+//                    filterPrice(-1, -1);
+//                }
+                ChechTheSame();
+
+             //   adapter.notifyDataSetChanged();
+                EventDefaultButtonColor();
+                if(drawerLayout.isDrawerOpen(GravityCompat.END)){
+                    drawerLayout.closeDrawer(GravityCompat.END);
+                }
+
+            }
+        });
+    }
+
+    public void ChechTheSame(){
+        if(filter_noiban > 0){
+            for(int i=0; i < arrayList.size(); i++){
+                int check = 0;
+                for(int j=0; j < arrayListplace.size() ; j++){
+                    if(arrayList.get(i).getIdsanpham() == arrayListplace.get(j).getIdsanpham()){
+                        check++;
+                    }
+                }
+                if(check == 0){
+                    arrayList.remove(i);
+                    i--;
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }
+        if(filter_vanchuyen > 0){
+            for(int i=0; i < arrayList.size(); i++){
+                int check = 0;
+                for(int j=0; j < arrayListShip.size() ; j++){
+                    if(arrayList.get(i).getIdsanpham() == arrayListShip.get(j).getIdsanpham()){
+                        check++;
+                    }
+                }
+                if(check == 0){
+                    arrayList.remove(i);
+                    i--;
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+        }
+        if(filter_gia > 0){
+            for(int i=0; i < arrayList.size(); i++){
+                int check = 0;
+                for(int j=0; j < arraylistPrice.size() ; j++){
+                    if(arrayList.get(i).getIdsanpham() == arraylistPrice.get(j).getIdsanpham()){
+                        check++;
+                    }
+                }
+                if(check == 0){
+                    arrayList.remove(i);
+                    i--;
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+        }
+
+    }
+    private void EventRealButton() {
+        realButtonGroup.setOnClickedButtonPosition(new RadioRealButtonGroup.OnClickedButtonPosition() {
+            @Override
+            public void onClickedButtonPosition(int position) {
+                page = 1;
+                pos = position;
+                arrayList.clear();
+                adapter.notifyDataSetChanged();
+                getData(pos, page);
+                loadMore();
+            }
+
+        });
+    }
+
+    private void loadMore() {
+        adapter.setLoadmore(new ILoadMore() {
+            @Override
+            public void onLoadMore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData(pos, ++page);
+                        adapter.notifyDataSetChanged();
+                        adapter.setIsloaded(false);
+                    }
+                },3000);
+            }
+        });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.filterhienthi){
+            pos = 0;
+            arrayList.clear();
+            adapter.notifyDataSetChanged();
+            page = 1;
+            // full
+            getData(pos, page);
+
+            drawerLayout.openDrawer(GravityCompat.END);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void EventDefaultButtonColor() {
+        btnvinhlong.setBackgroundResource(android.R.drawable.btn_default);
+        btncantho.setBackgroundResource(android.R.drawable.btn_default);
+        btnhanoi.setBackgroundResource(android.R.drawable.btn_default);
+        btntphcm.setBackgroundResource(android.R.drawable.btn_default);
+        btnprice100k.setBackgroundResource(android.R.drawable.btn_default);
+        btnprice1_300k.setBackgroundResource(android.R.drawable.btn_default);
+        btnpriceover300k.setBackgroundResource(android.R.drawable.btn_default);
+        editpricemin.setText("");
+        editpricemax.setText("");
+        btnviettelpost.setBackgroundResource(android.R.drawable.btn_default);
+        btngiaohangnhanh.setBackgroundResource(android.R.drawable.btn_default);
+        btngiaotietkiem.setBackgroundResource(android.R.drawable.btn_default);
+        btnjtexpress.setBackgroundResource(android.R.drawable.btn_default);
+        filter_gia = 0;
+        filter_noiban = 0;
+        filter_vanchuyen = 0;
+
+    }
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_search, menu);
@@ -343,25 +550,16 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.filterhienthi){
-            if(dem > 0){
-                arrayList.clear();
-                getData(0, ++a);
-            }
-            drawerLayout.openDrawer(GravityCompat.END);
-            dem++;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    private void getData(final int x, final int tanggiam) {
+
+    private void getData(final int xy, int page) {
         idloaisp = getIntent().getIntExtra("idloaisanpham", 0);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlhienthi,
+        String url = urlhienthi + String.valueOf(page);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             for(int i =0; i < jsonArray.length(); i++){
@@ -377,6 +575,7 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
                                         object.getInt("number"),
                                         object.getInt("discount")
                                 ));
+                                max = object.getInt("max");
                                 adapter.notifyDataSetChanged();
                             }
 
@@ -394,9 +593,7 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> map = new HashMap<>();
-//                map.put("idcuahang", String.valueOf(idcuahang) );
-                map.put("x", String.valueOf(x));
-                map.put("tanggiam", String.valueOf(tanggiam));
+                map.put("x", String.valueOf(xy));
                 map.put("idloaisanpham", String.valueOf(idloaisp));
                 return map;
             }
@@ -426,22 +623,32 @@ public class LoaiSanPhamActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         arrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(getApplicationContext(), arrayList);
+        adapter = new SanPhamAdapter(recyclerView, this, arrayList);
         recyclerView.setAdapter(adapter);
         editpricemax = (EditText) findViewById(R.id.edittextpricemaxloaisanpham);
         editpricemin = (EditText) findViewById(R.id.edittextpriceminloaisanpham);
         btnprice100k = (Button) findViewById(R.id.buttonnhonhatloaisanpham);
-        btnprice200k = (Button) findViewById(R.id.buttonnvualoaisanpham);
-        btnpriceover200k = (Button) findViewById(R.id.buttonlonnhatloaisanpham);
+        btnprice1_300k = (Button) findViewById(R.id.buttonnvualoaisanpham);
+        btnpriceover300k = (Button) findViewById(R.id.buttonlonnhatloaisanpham);
         btnreset = (Button) findViewById(R.id.buttonresetloaisanpham);
         btnapply = (Button) findViewById(R.id.buttonappdungloaisanpham);
         realButtonGroup = (RadioRealButtonGroup)findViewById(R.id.buttongrouploaisanpham);
         btnmoinhat = (RadioRealButton) findViewById(R.id.radiobuttonmoinhatloaisanpham);
         btnbanchay = (RadioRealButton) findViewById(R.id.radiobuttonbanchayloaisanpham);
-        btngia = (RadioRealButton) findViewById(R.id.radiobuttonsapxeptheogialoaisanpham);
+        btngiatang = (RadioRealButton) findViewById(R.id.radiobuttonsapxeptheogialoaisanphamtang);
+        btngiagiam = (RadioRealButton) findViewById(R.id.radiobuttonsapxeptheogialoaisanphamgiam);
         btncantho = (Button) findViewById(R.id.buttonCanTho);
         btnvinhlong = (Button) findViewById(R.id.buttonVinhLong);
         btntphcm = (Button) findViewById(R.id.buttonTPhcm);
         btnhanoi = (Button) findViewById(R.id.buttonHanoi);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        btnviettelpost = (Button) findViewById(R.id.viettelpost);
+        btngiaohangnhanh = (Button) findViewById(R.id.giaohangnhanh);
+        btngiaotietkiem = (Button) findViewById(R.id.giaohangtietkiem);
+        btnjtexpress = (Button) findViewById(R.id.jtexpress);
+        arrayListShip = new ArrayList<>();
+        arraylistPrice = new ArrayList<>();
+
+        
     }
 }

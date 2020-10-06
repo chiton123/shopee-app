@@ -6,7 +6,15 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nav.ui.Model.GioHang;
 import com.example.nav.ui.Fragment.HomeFragment;
 import com.example.nav.ui.Model.LoaiSanPham;
@@ -22,6 +30,8 @@ import androidx.navigation.ui.NavigationUI;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static ArrayList<GioHang> manggiohang;
@@ -37,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static int iduser = 0;
     public static int idstore = 0;
     public static String waypayment = "Thanh toán khi nhận hàng";
-    public static String host = "http://10.10.46.198:8888/server/";
+    public static String host = "http://10.10.42.196:8888/server/";
     public static String urldonhang = host + "getdonhangSendo.php";
     public static String urldanggiaochushop = host + "danggiaochushop.php";
     public static String urlchitietdonhang = host + "chitietdonhangSendo.php";
@@ -46,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public static String urlcholayhang = host + "cholayhangsendo.php";
     public static String urldanhmuc = host + "getdanhmucshop.php";
     public static String urlsanpham = host + "getsanphamcuashop.php";
-    public static String urlaosomi = host + "getcacsanphamsendo.php?page=";
+  //  public static String urlaosomi = host + "getcacsanphamsendo.php?page=";
     public static String urlshop = host + "getthongtinshop.php";
     public static String urlsanphamlienquan = host + "getsanphamlienquan.php";
     public static String urldanhgiasanpham = host + "danhgiasendo.php";
@@ -64,10 +74,11 @@ public class MainActivity extends AppCompatActivity {
     public static String urlhuydonhang = host + "huydonhangsendo.php";
     public static String urldahuy = host + "getdahuy.php";
     public static String urltheodoi = host + "theodoishop.php";
+    public static String urlstopfollow = host + "stopfollow.php";
     public static String urlnumberfollow = host + "getnumberfollow.php";
     public static String urlsuggestitem = host + "getsuggestitem.php";
     public static String urlhienthitimkiem = host + "hienthitimkiem.php";
-    public static String urlkindofproduct = host + "kindofproduct.php";
+    public static String urlkindofproduct = host + "kindofproduct.php?page=";
     public static String urlkindproductshop = host + "kindproductshop.php";
     public static String urlviairpay = host + "viairpay.php";
     public static String urlupdateairpay = host + "updateairpay.php";
@@ -97,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     public static String urlchangeproduct = host + "changeproduct.php";
     public static String urlupdateproduct = host  + "updateproduct.php";
     public static String urldeleteproduct = host + "deleteproduct.php";
+    public static String urlfiltership = host + "filtership.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +147,34 @@ public class MainActivity extends AppCompatActivity {
 //
 //        }
 
+    }
+    public void getShopeeWallet() {
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.urlviairpay,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        if(response != null){
+                            MainActivity.airpaymoney = Integer.parseInt(response);
+                          //  Toast.makeText(getApplicationContext(), MainActivity.airpaymoney + "", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("iduser", String.valueOf(MainActivity.iduser));
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
 

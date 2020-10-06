@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -36,7 +35,6 @@ import com.example.nav.ui.home.ui.main.LuotThichActivity;
 import com.example.nav.ui.home.ui.main.MessageActivity;
 import com.example.nav.ui.home.ui.main.Quanlyshopactivity;
 import com.example.nav.ui.home.ui.main.ShopeewalletAActivity;
-import com.example.nav.ui.home.ui.main.ViAirPayActivity;
 import com.example.nav.ui.home.ui.main.VishopeeActivity;
 import com.facebook.login.LoginManager;
 
@@ -59,7 +57,7 @@ public class NotificationsFragment extends Fragment {
     LinearLayout linearLayoutShopcuatoi;
     TextView txtshopcuatoi;
     ImageView imageViewlichsu;
-    ImageView imageViewChoxacnhan, imageViewChoLayhang, imageViewDangGiao, imageViewDanhgia, imageViewvishopee;
+    ImageView imageViewChoxacnhan, imageViewChoLayhang, imageViewDangGiao, imageViewDanhgia;
     String tenuser = "";
     TextView notify;
     TextView notify1;
@@ -89,7 +87,6 @@ public class NotificationsFragment extends Fragment {
         imageViewChoxacnhan = (ImageView) root.findViewById(R.id.imageviewuserchoxacnhan);
         imageViewDangGiao = (ImageView) root.findViewById(R.id.imageviewuserdanggiao);
         imageViewDanhgia = (ImageView) root.findViewById(R.id.imageviewuserdanhgia);
-        imageViewvishopee = (ImageView) root.findViewById(R.id.imageviewvishopee);
         notify = (TextView) root.findViewById(R.id.number);
         notify1 = (TextView) root.findViewById(R.id.number1);
         notify2 = (TextView) root.findViewById(R.id.number2);
@@ -355,14 +352,6 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        imageViewvishopee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ViAirPayActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     private void EventShop() {

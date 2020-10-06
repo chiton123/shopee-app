@@ -64,6 +64,7 @@ public class ThanhToanActivity extends AppCompatActivity {
         EventButton();
         optionPayment();
         AddressPayment();
+
     }
 
     private void AddressPayment() {
@@ -110,7 +111,7 @@ public class ThanhToanActivity extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String,String> map  = new HashMap<>();
                             map.put("tongtien", String.valueOf(money));
-                            map.put("username", MainActivity.username);
+                            map.put("iduser", String.valueOf(MainActivity.iduser));
                             return map;
                         }
                     };
@@ -137,9 +138,9 @@ public class ThanhToanActivity extends AppCompatActivity {
                                                                 new Response.Listener<String>() {
                                                                     @Override
                                                                     public void onResponse(String response) {
-
                                                                         Toast.makeText(getApplicationContext(), "ĐẶT HÀNG THÀNH CÔNG", Toast.LENGTH_SHORT).show();
                                                                         MainActivity.manggiohang.clear();
+                                                                        getShopeeWallet();
                                                                         finish();
                                                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -232,7 +233,35 @@ public class ThanhToanActivity extends AppCompatActivity {
         });
 
     }
+    public  void getShopeeWallet() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.urlviairpay,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        if(response != null){
 
+                            MainActivity.airpaymoney = Integer.parseInt(response);
+                         //   Toast.makeText(getApplicationContext(), MainActivity.airpaymoney + "", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("iduser", String.valueOf(MainActivity.iduser));
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
 
     private void tinhTien() {
         Intent intent = getIntent();
@@ -247,7 +276,7 @@ public class ThanhToanActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null){
             txtthanhtoan.setText(data.getStringExtra("cachthanhtoan"));
             MainActivity.waypayment = data.getStringExtra("cachthanhtoan");
-            if(MainActivity.waypayment.equals("Ví AirPay")){
+            if(MainActivity.waypayment.equals("Ví Shopee")){
                 airpay = 1;
             }
         }

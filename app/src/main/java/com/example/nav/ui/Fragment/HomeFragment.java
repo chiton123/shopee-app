@@ -30,6 +30,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -96,7 +97,6 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
         toolbarMain = (Toolbar) root.findViewById(R.id.toolbarMain);
         toolbarMain.inflateMenu(R.menu.menu_giohang);
-
         viewFlipper = (ViewFlipper) root.findViewById(R.id.viewfliper);
         MainActivity activity = (MainActivity) getActivity();
         activity.setSupportActionBar(toolbarMain);
@@ -105,7 +105,6 @@ public class HomeFragment extends Fragment {
         getDataLoaisp();
         getSanPhamMoiNhat();
         test();
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -136,37 +135,11 @@ public class HomeFragment extends Fragment {
         Animation animation_out = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
         viewFlipper.setInAnimation(animation_in);
         viewFlipper.setOutAnimation(animation_out);
-        getAirPay();
+
         return root;
     }
 
-    private void getAirPay() {
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.urlviairpay,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response != null){
-                            MainActivity.airpaymoney = Integer.parseInt(response.toString());
 
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map = new HashMap<>();
-                map.put("username", MainActivity.username);
-                return map;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
 
     private void test() {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -198,15 +171,6 @@ public class HomeFragment extends Fragment {
                             for(int i=0; i < response.length(); i++){
                                 try {
                                     JSONObject object = response.getJSONObject(i);
-//                                    id = object.getInt("idsanpham");
-//                                    tensp = object.getString("tensanpham");
-//                                    hinhanhsp = object.getString("hinhanhsanpham");
-//                                    gia = object.getInt("giasanpham");
-//                                    idcuahang = object.getInt("idcuahang");
-//                                    idloaisp = object.getInt("idloaisanpham");
-//                                    soluongdaban = object.getInt("soluongdaban");
-//                                    soluong = object.getInt("soluong");
-//                                    phantramkhuyenmai = object.getInt("phantramkhuyenmai");
                                     sanPhamArrayList.add(new SanPham(
                                             object.getInt("id"),
                                             object.getString("name"),
@@ -233,6 +197,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
         requestQueue.add(jsonArrayRequest);
 
     }
@@ -241,7 +206,7 @@ public class HomeFragment extends Fragment {
         adapter = new LoaiSanPhamAdapter(getActivity(), loaiSanPhamArrayList);
         gridView.setAdapter(adapter);
         sanPhamArrayList = new ArrayList<>();
-        sanPhamAdapter = new SanPhamAdapter(getActivity(), sanPhamArrayList);
+        sanPhamAdapter = new SanPhamAdapter(recyclerView,getActivity(), sanPhamArrayList);
         recyclerView.setAdapter(sanPhamAdapter);
     }
 
@@ -283,7 +248,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-
         requestQueue.add(jsonArrayRequest);
 
     }
@@ -305,8 +269,6 @@ public class HomeFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
 
     }
-
-
 
     private void setUpBadge() {
         cartnumber = MainActivity.manggiohang.size();

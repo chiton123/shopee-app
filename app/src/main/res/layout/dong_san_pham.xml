@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
     android:orientation="vertical"
+    android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         >
         <FrameLayout
@@ -58,10 +59,10 @@
                     android:id="@+id/imageviewsanpham"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
                     android:text="ten san pham"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="#1E1E1B"
                     android:textStyle="bold"
                     android:maxLines="4"

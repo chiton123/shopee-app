@@ -58,7 +58,7 @@ public class FragmentShopSanPham extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         arrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(getActivity(), arrayList);
+        adapter = new SanPhamAdapter(recyclerView,getActivity(), arrayList);
         recyclerView.setAdapter(adapter);
         getData(0, ++a);
         checkradiobutton();

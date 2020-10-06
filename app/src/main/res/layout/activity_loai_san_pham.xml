@@ -57,8 +57,16 @@
                     android:layout_height="wrap_content"
                     app:rrb_ripple="true"
                     app:rrb_rippleColor="#4a4a4a"
-                    app:rrb_text="Giá"
-                    android:id="@+id/radiobuttonsapxeptheogialoaisanpham"
+                    app:rrb_text="Giá tăng"
+                    android:id="@+id/radiobuttonsapxeptheogialoaisanphamtang"
+                    ></co.ceryle.radiorealbutton.library.RadioRealButton>
+                <co.ceryle.radiorealbutton.library.RadioRealButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rrb_ripple="true"
+                    app:rrb_rippleColor="#4a4a4a"
+                    app:rrb_text="Giá giảm"
+                    android:id="@+id/radiobuttonsapxeptheogialoaisanphamgiam"
                     ></co.ceryle.radiorealbutton.library.RadioRealButton>
 
             </co.ceryle.radiorealbutton.library.RadioRealButtonGroup>
@@ -203,6 +211,59 @@
                             ></Button>
                     </LinearLayout>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vận chuyển"
+                        android:textSize="20sp"
+                        android:textColor="#0B0B0B"
+                        ></TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <Button
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:text="Viettel Post"
+                            android:id="@+id/viettelpost"
+                            ></Button>
+                        <Button
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:text="Giao Hàng Nhanh"
+                            android:id="@+id/giaohangnhanh"
+                            ></Button>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <Button
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:text="Giao Hàng Tiết Kiệm"
+                            android:id="@+id/giaohangtietkiem"
+                            ></Button>
+                        <Button
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:text="JT Express"
+                            android:id="@+id/jtexpress"
+                            ></Button>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
                 <LinearLayout
                     android:layout_marginTop="100dp"
                     android:layout_width="match_parent"

@@ -61,6 +61,7 @@ public class ShopActivity extends AppCompatActivity {
     Button btntheodoi, btnchat;
     String urltheodoi = MainActivity.urltheodoi;
     String urlnumberfollow = MainActivity.urlnumberfollow;
+    String urlstopfollow = MainActivity.urlstopfollow;
     int numberfollow = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +71,13 @@ public class ShopActivity extends AppCompatActivity {
         anhxa();
         EventTenShop();
         getThongtinshop();
+        CheckFollow();
         setUpTabLayout();
         tabLayout.setupWithViewPager(viewPager);
 
         EventButton();
-        CheckFollow();
+
         SetNumberFollower();
-
-
 
     }
 
@@ -98,7 +98,10 @@ public class ShopActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.filtermenu:
-                Toast.makeText(getApplicationContext(), "filter", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(getApplicationContext(), HienThiTimKiemActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent1.putExtra("idcuahang", idcuahang);
+                startActivity(intent1);
                 break;
             case R.id.more:
                 Toast.makeText(getApplicationContext(), "more", Toast.LENGTH_SHORT).show();
@@ -107,7 +110,7 @@ public class ShopActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void SetNumberFollower() {
+    public void SetNumberFollower() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlnumberfollow,
                 new Response.Listener<String>() {
@@ -141,8 +144,9 @@ public class ShopActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         if(response.equals("datheodoi")){
                             btntheodoi.setText("Đã theo dõi");
-                            btntheodoi.setEnabled(false);
-                            btntheodoi.setClickable(false);
+                            Toast.makeText(getApplicationContext(), "da theo doi", Toast.LENGTH_SHORT).show();
+//                            btntheodoi.setEnabled(false);
+//                            btntheodoi.setClickable(false);
                         }
                     }
                 },
@@ -155,7 +159,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> map = new HashMap<>();
-                map.put("tendangnhap", MainActivity.username);
+                map.put("iduser", String.valueOf(MainActivity.iduser));
                 map.put("idcuahang", String.valueOf(idcuahang));
                 return map;
             }
@@ -169,32 +173,65 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(MainActivity.kiemtralogin == 1){
-                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, urltheodoi,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
+                    if(btntheodoi.getText().equals("Đã theo dõi")){
+                        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlstopfollow,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        if(response.equals("success")){
+                                            btntheodoi.setText("Theo dõi");
+                                            SetNumberFollower();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String,String> map = new HashMap<>();
+                                map.put("iduser", String.valueOf(MainActivity.iduser));
+                                map.put("idcuahang", String.valueOf(idcuahang));
+                                return map;
+                            }
+                        };
+                        requestQueue.add(stringRequest);
+                    }else {
 
+                        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, urltheodoi,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
                                         Toast.makeText(getApplicationContext(), "Đã theo dõi", Toast.LENGTH_SHORT).show();
                                         btntheodoi.setText("Đã theo dõi");
+                                        SetNumberFollower();
 
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            }) {
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String,String> map = new HashMap<>();
-                            map.put("iduser", String.valueOf(MainActivity.iduser));
-                            map.put("idcuahang", String.valueOf(idcuahang));
-                            return map;
-                        }
-                    };
-                    requestQueue.add(stringRequest);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String,String> map = new HashMap<>();
+                                map.put("iduser", String.valueOf(MainActivity.iduser));
+                                map.put("idcuahang", String.valueOf(idcuahang));
+                                return map;
+                            }
+                        };
+                        requestQueue.add(stringRequest);
+
+                    }
+
+
                 }else {
                     Intent intent = new Intent(ShopActivity.this, DangNhapActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -234,16 +271,16 @@ public class ShopActivity extends AppCompatActivity {
                             for(int i=0; i < jsonArray.length(); i++){
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 txttenshop.setText(object.getString("tencuahang"));
-                                txtsoluongsp.setText(object.getInt("soluongsanpham") + "\n sản phẩm");
-                                txtdanhgia.setText(object.getInt("danhgiatb") +"/5" +"\nđánh giá");
+//                                txtsoluongsp.setText(object.getInt("soluongsanpham") + "\n sản phẩm");
+//                                txtdanhgia.setText(object.getInt("danhgiatb") +"/5" +"\nđánh giá");
                                 sosaotb = object.getInt("danhgiatb");
                                 FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) viewPager.getAdapter();
                                 FragmentShop fragmentShop = (FragmentShop) fragmentPagerAdapter.getItem(0);
                                 fragmentShop.getNumberStar(sosaotb);
                                 fragmentShop.evaluationEvent();
+                                fragmentShop.getThongtinshop();
 
-
-                                txtphanhoichat.setText("98%" + "\n phản hồi chat");
+                           //     txtphanhoichat.setText("98%" + "\n phản hồi chat");
                                 idowner = object.getInt("iduser");
                                 Picasso.get().load(object.getString("hinhanhcuahang")).into(imageView);
                                 owner_name = object.getString("tenchu");
@@ -284,13 +321,9 @@ public class ShopActivity extends AppCompatActivity {
         btntheodoi = (Button) findViewById(R.id.buttonTheodoishop);
         btnchat = (Button) findViewById(R.id.buttonchatshop);
         imageView = (ImageView) findViewById(R.id.imageviewanhshopcuahang);
-        txtsoluongsp = (TextView) findViewById(R.id.textviewsoluongsanphamcuashop);
-        txtdanhgia = (TextView) findViewById(R.id.textviewdanhgiacuashop);
-        txtphanhoichat = (TextView) findViewById(R.id.textviewphanhoicuashop);
         viewPager = (ViewPager) findViewById(R.id.viewpagerShop);
         tabLayout = (TabLayout) findViewById(R.id.tablayoutShop);
         txttenshop = (TextView) findViewById(R.id.textviewtenshop1);
-      //  searchView = (SearchView) findViewById(R.id.searchviewshop);
     }
 
     private void setUpTabLayout() {

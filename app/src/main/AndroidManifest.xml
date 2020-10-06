@@ -55,10 +55,6 @@
         <activity android:name=".ui.home.ui.main.MessageActivity" />
         <activity android:name=".ui.home.ui.main.ChatActivity" />
         <activity android:name=".ui.home.ui.main.DiaChiNhanHangActivity" />
-        <activity android:name=".ui.home.ui.main.NganHangActivity" />
-        <activity android:name=".ui.home.ui.main.ThanhToanNapTienActivity" />
-        <activity android:name=".ui.home.ui.main.NapTienActivity" />
-        <activity android:name=".ui.home.ui.main.ViAirPayActivity" />
         <activity android:name=".ui.home.ui.main.DanhMucShopActivity" />
         <activity android:name=".ui.home.ui.main.LoaiSanPhamActivity" />
         <activity android:name=".ui.home.ui.main.HienThiTimKiemActivity" />

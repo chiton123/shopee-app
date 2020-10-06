@@ -30,7 +30,6 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
     PhuongThucThanhToanAdapter adapter;
     TextView txtcachthanhtoan;
     Button btndongy;
-    int sodu = 0;
     int check = 0;
     String urlsotien = MainActivity.urlviairpay;
     @Override
@@ -73,10 +72,12 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
                 parent.setItemChecked(index, true);
                 NganHang nganHang = listHeader.get(groupPosition);
 
-                if(nganHang.getTennganhang().equals("Ví AirPay")){
-                    if(MainActivity.totalpayment > MainActivity.airpaymoney){
-                        Toast.makeText(getApplicationContext(), "Số tiền trong ví không đủ!", Toast.LENGTH_SHORT).show();
-                        check = 1;
+                if(nganHang.getTennganhang().equals("Ví Shopee")){
+                    if(MainActivity.kiemtralogin == 1){
+                        if(MainActivity.totalpayment > MainActivity.airpaymoney){
+                            Toast.makeText(getApplicationContext(), "Số tiền trong ví không đủ!", Toast.LENGTH_SHORT).show();
+                            check = 1;
+                        }
                     }
                 }
                 txtcachthanhtoan.setText(nganHang.getTennganhang());
@@ -106,14 +107,16 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
         listHeader = new ArrayList<>();
         expandableListView = (ExpandableListView) findViewById(R.id.listviewphuongthucthanhtoan);
         listdataChild = new HashMap<NganHang, List<NganHang>>();
-        listHeader.add(new NganHang(0, "Ví AirPay", R.drawable.b1));
+        listHeader.add(new NganHang(0, "Ví Shopee", R.drawable.b1));
         listHeader.add(new NganHang(1, "Thẻ tín dụng", R.drawable.b3));
         listHeader.add(new NganHang(2, "Thanh toán khi nhận hàng", R.drawable.b2));
         List<NganHang> listAirpay = new ArrayList<>();
         List<NganHang> listCredit = new ArrayList<>();
         List<NganHang> listCod = new ArrayList<>();
-        int sotien = MainActivity.airpaymoney;
-        listAirpay.add(new NganHang(0, "Số dư : " + sotien, R.drawable.b4));
+        if(MainActivity.kiemtralogin == 1){
+            int sotien = MainActivity.airpaymoney;
+            listAirpay.add(new NganHang(0, "Số dư : " + sotien, R.drawable.b4));
+        }
         listdataChild.put(listHeader.get(0), listAirpay);
         listdataChild.put(listHeader.get(1), listCredit);
         listdataChild.put(listHeader.get(2), listCod);

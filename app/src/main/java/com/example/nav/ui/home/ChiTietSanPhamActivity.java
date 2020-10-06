@@ -69,7 +69,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
     TextView txttenshop, txtviewdiachishop;
     ImageView imganhshop;
     Button btnxemshop;
-    int idcuahang = 0;
+    public static int idcuahang = 0;
     int idowner = 0;
     String owner_name = "";
     //    String urlShop = "http://192.168.137.83:8888/server/getthongtinshop.php";
@@ -413,7 +413,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         recyclerViewSPLienQuan.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewSPLienQuan.setLayoutManager(layoutManager);
-        sanPhamAdapter = new SanPhamAdapter(getApplicationContext(), sanphamlienquanarraylist);
+        sanPhamAdapter = new SanPhamAdapter(recyclerViewSPLienQuan,this, sanphamlienquanarraylist);
         recyclerViewSPLienQuan.setItemAnimator(new DefaultItemAnimator());
         recyclerViewSPLienQuan.setAdapter(sanPhamAdapter);
         txtsoluongcuashop = (TextView) findViewById(R.id.textviewsosanphamchitietsp);

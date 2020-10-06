@@ -237,7 +237,7 @@ public class DanhMucShopActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         arrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(getApplicationContext(), arrayList);
+        adapter = new SanPhamAdapter(recyclerView,this, arrayList);
         recyclerView.setAdapter(adapter);
         editpricemax = (EditText) findViewById(R.id.edittextpricemaxdanhmucshop);
         editpricemin = (EditText) findViewById(R.id.edittextpricemindanhmucshop);

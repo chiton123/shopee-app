@@ -45,16 +45,16 @@ public class ShopeewalletAActivity extends AppCompatActivity {
     }
 
     private void getMoney() {
-        imageViewruttien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RutTienActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("bankname", bankname);
-                intent.putExtra("surplus", surplus);
-                startActivity(intent);
-            }
-        });
+//        imageViewruttien.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), RutTienActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("bankname", bankname);
+//                intent.putExtra("surplus", surplus);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void getSurplus() {
@@ -108,7 +108,7 @@ public class ShopeewalletAActivity extends AppCompatActivity {
     private void anhxa() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         txt_sodu = (TextView) findViewById(R.id.sodu);
-        imageViewruttien = (ImageView) findViewById(R.id.imageviewruttien);
+    //    imageViewruttien = (ImageView) findViewById(R.id.imageviewruttien);
 
 
     }

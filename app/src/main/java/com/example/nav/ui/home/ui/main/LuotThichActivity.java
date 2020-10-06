@@ -110,7 +110,7 @@ public class LuotThichActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        adapter = new SanPhamAdapter(getApplicationContext(), arrayList);
+        adapter = new SanPhamAdapter(recyclerView, this, arrayList);
         recyclerView.setAdapter(adapter);
 
     }
