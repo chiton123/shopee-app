@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nav.R;
-import com.example.nav.ui.home.ui.main.DanhGiaActivity;
+import com.example.nav.ui.UserActivity.DanhGiaActivity;
 import com.example.nav.ui.Model.GioHangChoLayHang;
 import com.squareup.picasso.Picasso;
 

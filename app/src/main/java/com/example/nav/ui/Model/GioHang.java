@@ -1,18 +1,20 @@
 package com.example.nav.ui.Model;
-
+// so luong toi da là số hàng có trong kho của shop
 public class GioHang {
     private int idsp;
     private String tensp;
     private long giasp;
     private String hinhanhsp;
     private int soluongsp;
+    private int soluongtoida;
 
-    public GioHang(int idsp, String tensp, long giasp, String hinhanhsp, int soluongsp) {
+    public GioHang(int idsp, String tensp, long giasp, String hinhanhsp, int soluongsp, int soluongtoida) {
         this.idsp = idsp;
         this.tensp = tensp;
         this.giasp = giasp;
         this.hinhanhsp = hinhanhsp;
         this.soluongsp = soluongsp;
+        this.soluongtoida = soluongtoida;
     }
 
     public int getIdsp() {
@@ -53,5 +55,13 @@ public class GioHang {
 
     public void setSoluongsp(int soluongsp) {
         this.soluongsp = soluongsp;
+    }
+
+    public int getSoluongtoida() {
+        return soluongtoida;
+    }
+
+    public void setSoluongtoida(int soluongtoida) {
+        this.soluongtoida = soluongtoida;
     }
 }

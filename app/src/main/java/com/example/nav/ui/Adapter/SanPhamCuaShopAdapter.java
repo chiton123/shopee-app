@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nav.R;
-import com.example.nav.ui.home.ChiTietSanPhamActivity;
+import com.example.nav.ui.Sale_purchase.ChiTietSanPhamActivity;
 import com.example.nav.ui.Model.SanPham;
 import com.squareup.picasso.Picasso;
 

@@ -51,6 +51,14 @@
                         android:text="Gia"
                         android:textColor="#DC4516"
                         android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/soluongconlai"
+                        android:text="Số còn lại"
+                        android:textColor="#040403"
+                        android:textSize="20sp"
+                        ></TextView>
 
                     <Spinner
                         android:id="@+id/spinner"
@@ -139,7 +147,7 @@
                             android:id="@+id/imageviewanhshop"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/shop1"></ImageView>
+                           ></ImageView>
 
                         <LinearLayout
                             android:layout_width="wrap_content"

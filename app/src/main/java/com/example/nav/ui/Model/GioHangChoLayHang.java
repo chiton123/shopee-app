@@ -2,6 +2,8 @@ package com.example.nav.ui.Model;
 
 import java.io.Serializable;
 
+// để sử dụng cho fragment theo dõi đơn hàng, của người mua và chủ chủ shop
+
 public class GioHangChoLayHang implements Serializable {
     private int idsp;
     private String tensp;

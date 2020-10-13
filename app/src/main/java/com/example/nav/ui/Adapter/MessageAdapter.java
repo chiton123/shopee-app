@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Model.Chat;
-import com.example.nav.ui.home.ui.main.ChatActivity;
 
 import java.util.ArrayList;
 

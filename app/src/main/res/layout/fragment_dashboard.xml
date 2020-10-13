@@ -1,22 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
 
-    <TextView
-        android:id="@+id/text_dashboard"
+            ></ImageView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ></ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:id="@+id/layoutinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            ></TextView>
+        <EditText
+            android:drawablePadding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="username"
+            android:drawableRight="@drawable/ic_person"
+            android:id="@+id/username"
+            ></EditText>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            ></TextView>
+        <EditText
+            android:drawablePadding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="....."
+            android:id="@+id/password"
+            android:drawableRight="@drawable/ic_security"
+            android:inputType="textPassword"
+            ></EditText>
+
+        <Button
+            android:layout_marginTop="50dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log in as admin"
+            android:background="#1E88E5"
+            android:id="@+id/login"
+            ></Button>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:textSize="30sp"
+        android:layout_above="@id/layoutinput"
+        android:layout_centerHorizontal="true"
+        android:textColor="#0C0C0C"
+        android:id="@+id/s"
+        ></TextView>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:layout_above="@id/s"
+        android:layout_centerHorizontal="true"
+        ></ImageView>
+
+</RelativeLayout>

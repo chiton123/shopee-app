@@ -21,7 +21,7 @@ import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Adapter.SuaSanPhamAdapter;
 import com.example.nav.ui.Model.SanPhamSua;
-import com.example.nav.ui.home.ui.main.SuaSanPhamActivity;
+import com.example.nav.ui.ProductAdjustion.SuaSanPhamActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

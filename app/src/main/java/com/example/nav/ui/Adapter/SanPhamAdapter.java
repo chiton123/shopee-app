@@ -1,6 +1,5 @@
 package com.example.nav.ui.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -27,9 +26,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Interface.ILoadMore;
-import com.example.nav.ui.home.ChiTietSanPhamActivity;
+import com.example.nav.ui.Sale_purchase.ChiTietSanPhamActivity;
 import com.example.nav.ui.Model.SanPham;
-import com.example.nav.ui.home.DangNhapActivity;
+import com.example.nav.ui.Sign_in.DangNhapActivity;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
@@ -170,7 +169,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ChiTietSanPhamActivity.class);
-                    intent.putExtra("thongtinsanpham", filteredNameList.get(getAdapterPosition()));
+                    try{
+                        intent.putExtra("thongtinsanpham", filteredNameList.get(getAdapterPosition()));
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        Toast.makeText(context, "Sai gi roi", Toast.LENGTH_SHORT).show();
+                    }
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

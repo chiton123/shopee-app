@@ -46,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
     public static int totalpayment = 0;
     public static int iduser = 0;
     public static int idstore = 0;
+    public static int admin = 0;
     public static String waypayment = "Thanh toán khi nhận hàng";
-    public static String host = "http://10.10.42.196:8888/server/";
+    public static String host = "http://10.10.35.151:8888/server/";
     public static String urldonhang = host + "getdonhangSendo.php";
     public static String urldanggiaochushop = host + "danggiaochushop.php";
     public static String urlchitietdonhang = host + "chitietdonhangSendo.php";
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public static String urlsuggestitem = host + "getsuggestitem.php";
     public static String urlhienthitimkiem = host + "hienthitimkiem.php";
     public static String urlkindofproduct = host + "kindofproduct.php?page=";
+    public static String urlkindallproduct = host + "kindallproduct.php";
     public static String urlkindproductshop = host + "kindproductshop.php";
     public static String urlviairpay = host + "viairpay.php";
     public static String urlupdateairpay = host + "updateairpay.php";
@@ -109,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
     public static String urlupdateproduct = host  + "updateproduct.php";
     public static String urldeleteproduct = host + "deleteproduct.php";
     public static String urlfiltership = host + "filtership.php";
+    public static String urluserinfo = host + "getuserinfo.php";
+    public static String urldangnhapadmin = host + "dangnhapadmin.php";
+    public static String urlusermange = host + "usermanagement.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

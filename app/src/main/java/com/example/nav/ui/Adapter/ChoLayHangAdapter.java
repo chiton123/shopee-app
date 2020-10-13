@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nav.R;
-import com.example.nav.ui.home.ui.main.ChuanBiHangActivity;
+import com.example.nav.ui.shop.ChuanBiHangActivity;
 import com.example.nav.ui.Model.GioHangChoLayHang;
 import com.squareup.picasso.Picasso;
 

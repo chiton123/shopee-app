@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +17,6 @@
         style="?android:attr/ratingBarStyleIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textviewTennguoimua"
         android:scaleX="0.5"
         android:scaleY="0.5"
         android:transformPivotX="0dp"
@@ -26,8 +26,7 @@
         android:layout_height="wrap_content"
         android:text="DANH GIA"
         android:id="@+id/textviewdanhgianguoimua"
-        android:layout_below="@id/ratingbarnguoimua"
         android:textColor="#10100F"
         android:textSize="16sp"
         ></TextView>
-</RelativeLayout>
+</LinearLayout>

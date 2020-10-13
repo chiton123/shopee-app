@@ -8,11 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Model.GioHang;
-import com.example.nav.ui.home.GioHangActivity;
+import com.example.nav.ui.Sale_purchase.GioHangActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class GioHangAdapter extends BaseAdapter {
     }
     public class ViewHolder{
         ImageView imggiohang;
-        TextView tengiohang, giagiohang;
+        TextView tengiohang, giagiohang, soluongconlai;
         Button btnminus, btnvalue, btnplus;
     }
     @Override
@@ -58,6 +59,7 @@ public class GioHangAdapter extends BaseAdapter {
             viewHolder.btnminus = (Button) convertView.findViewById(R.id.buttonMinus);
             viewHolder.btnplus = (Button) convertView.findViewById(R.id.buttonPlus);
             viewHolder.btnvalue = (Button) convertView.findViewById(R.id.buttonValue);
+            viewHolder.soluongconlai = (TextView) convertView.findViewById(R.id.soluong);
             viewHolder.btnminus.setFocusable(false);
             viewHolder.btnvalue.setFocusable(false);
             viewHolder.btnplus.setFocusable(false);
@@ -72,6 +74,7 @@ public class GioHangAdapter extends BaseAdapter {
         viewHolder.tengiohang.setText(gioHang.getTensp());
         viewHolder.giagiohang.setText(gioHang.getGiasp() + "");
         viewHolder.btnvalue.setText(gioHang.getSoluongsp()+"");
+        viewHolder.soluongconlai.setText("Số lượng còn lại: " + arrayList.get(position).getSoluongtoida() );
         Picasso.get().load(gioHang.getHinhanhsp()).into(viewHolder.imggiohang);
      //   int sl = Integer.parseInt(viewHolder.btnvalue.getText().toString());
         final ViewHolder finalViewHolder = viewHolder;
@@ -79,29 +82,41 @@ public class GioHangAdapter extends BaseAdapter {
         viewHolder.btnplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int soluongmoinhat = Integer.parseInt(finalViewHolder.btnvalue.getText().toString()) + 1;
                 int soluonghientai = MainActivity.manggiohang.get(position).getSoluongsp();
-                long giahientai = MainActivity.manggiohang.get(position).getGiasp();
-                MainActivity.manggiohang.get(position).setSoluongsp(soluongmoinhat);
-                long giamoinhat = (giahientai * soluongmoinhat) / soluonghientai;
-                MainActivity.manggiohang.get(position).setGiasp(giamoinhat);
-                GioHangActivity.EventUntil();
-                finalViewHolder.btnvalue.setText(soluongmoinhat + "");
-                finalViewHolder.giagiohang.setText(giamoinhat + "");
+                if(soluonghientai == arrayList.get(position).getSoluongtoida()){
+                    Toast.makeText(context, "Shop không có đủ hàng", Toast.LENGTH_SHORT).show();
+                }else {
+                    int soluongmoinhat = Integer.parseInt(finalViewHolder.btnvalue.getText().toString()) + 1;
+                    long giahientai = MainActivity.manggiohang.get(position).getGiasp();
+                    MainActivity.manggiohang.get(position).setSoluongsp(soluongmoinhat);
+                    long giamoinhat = (giahientai * soluongmoinhat) / soluonghientai;
+                    MainActivity.manggiohang.get(position).setGiasp(giamoinhat);
+                    GioHangActivity.EventUntil();
+                    finalViewHolder.btnvalue.setText(soluongmoinhat + "");
+                    finalViewHolder.giagiohang.setText(giamoinhat + "");
+                }
+
             }
         });
+        final ViewHolder finalViewHolder2 = viewHolder;
         viewHolder.btnminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int soluongmoinhat = Integer.parseInt(finalViewHolder.btnvalue.getText().toString()) - 1;
                 int soluonghientai = MainActivity.manggiohang.get(position).getSoluongsp();
-                long giahientai = MainActivity.manggiohang.get(position).getGiasp();
-                MainActivity.manggiohang.get(position).setSoluongsp(soluongmoinhat);
-                long giamoinhat = (giahientai * soluongmoinhat) / soluonghientai;
-                MainActivity.manggiohang.get(position).setGiasp(giamoinhat);
-                GioHangActivity.EventUntil();
-                finalViewHolder.btnvalue.setText(soluongmoinhat + "");
-                finalViewHolder.giagiohang.setText(giamoinhat + "");
+                if(soluonghientai == 1){
+                    Toast.makeText(context, "Khổng thể giảm được nữa!", Toast.LENGTH_SHORT).show();
+                }else {
+                    int soluongmoinhat = Integer.parseInt(finalViewHolder.btnvalue.getText().toString()) - 1;
+                    long giahientai = MainActivity.manggiohang.get(position).getGiasp();
+                    MainActivity.manggiohang.get(position).setSoluongsp(soluongmoinhat);
+                    long giamoinhat = (giahientai * soluongmoinhat) / soluonghientai;
+                    MainActivity.manggiohang.get(position).setGiasp(giamoinhat);
+                    GioHangActivity.EventUntil();
+                    finalViewHolder2.btnvalue.setText(soluongmoinhat + "");
+                    finalViewHolder2.giagiohang.setText(giamoinhat + "");
+                }
+
+
             }
         });
 

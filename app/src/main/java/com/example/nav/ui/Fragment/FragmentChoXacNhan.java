@@ -24,7 +24,7 @@ import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Adapter.ChoXacNhanAdapter;
 import com.example.nav.ui.Model.GioHangChoLayHang;
-import com.example.nav.ui.home.ui.main.ThongTinDonHang;
+import com.example.nav.ui.Order.ThongTinDonHang;
 
 import org.json.JSONArray;
 import org.json.JSONException;

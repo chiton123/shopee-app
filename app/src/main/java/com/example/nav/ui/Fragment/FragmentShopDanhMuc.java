@@ -24,8 +24,8 @@ import com.example.nav.MainActivity;
 import com.example.nav.R;
 import com.example.nav.ui.Adapter.SanPhamShopAdapter;
 import com.example.nav.ui.Model.SanPhamShop;
-import com.example.nav.ui.home.ui.main.DanhMucShopActivity;
-import com.example.nav.ui.home.ui.main.ShopActivity;
+import com.example.nav.ui.shop.DanhMucShopActivity;
+import com.example.nav.ui.shop.ShopActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

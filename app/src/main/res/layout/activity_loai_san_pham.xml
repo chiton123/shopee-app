@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.home.ui.main.HienThiTimKiemActivity">
+    tools:context=".ui.shop.HienThiTimKiemActivity">
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -140,124 +140,152 @@
                         android:orientation="horizontal"
                         >
                         <Button
+
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:text="0-100k"
                             android:textSize="14sp"
                             android:id="@+id/buttonnhonhatloaisanpham"
+                            android:background="@drawable/color_select"
                             ></Button>
                         <Button
-                            android:layout_width="110dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:text="100k-300k"
                             android:textSize="14sp"
                             android:id="@+id/buttonnvualoaisanpham"
+                            android:background="@drawable/color_select"
                             ></Button>
                         <Button
+                            android:layout_marginLeft="5dp"
                             android:text="300k-700k"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:textSize="14sp"
                             android:id="@+id/buttonlonnhatloaisanpham"
+                            android:background="@drawable/color_select"
                             ></Button>
                     </LinearLayout>
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nơi bán"
+                    android:textSize="20sp"
+                    android:textColor="#0B0B0B"
+                    ></TextView>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:gravity="center_horizontal"
                     >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nơi bán"
-                        android:textSize="20sp"
-                        android:textColor="#0B0B0B"
-                        ></TextView>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:gravity="center_horizontal"
                         >
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="Hà Nội"
                             android:id="@+id/buttonHanoi"
+                            android:background="@drawable/color_select"
                             ></Button>
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="Vĩnh Long"
                             android:id="@+id/buttonVinhLong"
+                            android:background="@drawable/color_select"
                             ></Button>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
                         >
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="Cần Thơ"
                             android:id="@+id/buttonCanTho"
+                            android:background="@drawable/color_select"
                             ></Button>
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="TP HCM"
                             android:id="@+id/buttonTPhcm"
+                            android:background="@drawable/color_select"
                             ></Button>
                     </LinearLayout>
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vận chuyển"
+                    android:textSize="20sp"
+                    android:textColor="#0B0B0B"
+                    ></TextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vận chuyển"
-                        android:textSize="20sp"
-                        android:textColor="#0B0B0B"
-                        ></TextView>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:gravity="center_horizontal|center_vertical"
+
                         >
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="Viettel Post"
                             android:id="@+id/viettelpost"
+                            android:background="@drawable/color_select"
                             ></Button>
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="Giao Hàng Nhanh"
                             android:id="@+id/giaohangnhanh"
+                            android:background="@drawable/color_select"
                             ></Button>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal|center_vertical"
                         >
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="Giao Hàng Tiết Kiệm"
                             android:id="@+id/giaohangtietkiem"
+                            android:background="@drawable/color_select"
                             ></Button>
                         <Button
-                            android:layout_width="150dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="120dp"
                             android:layout_height="50dp"
                             android:text="JT Express"
                             android:id="@+id/jtexpress"
+                            android:background="@drawable/color_select"
                             ></Button>
                     </LinearLayout>
                 </LinearLayout>

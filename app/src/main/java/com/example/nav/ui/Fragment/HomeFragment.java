@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -21,19 +20,15 @@ import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nav.MainActivity;
 import com.example.nav.R;
@@ -41,12 +36,11 @@ import com.example.nav.ui.Adapter.LoaiSanPhamAdapter;
 import com.example.nav.ui.Adapter.SanPhamAdapter;
 import com.example.nav.ui.Model.LoaiSanPham;
 import com.example.nav.ui.Model.SanPham;
-import com.example.nav.ui.home.DangNhapActivity;
-import com.example.nav.ui.home.GioHangActivity;
+import com.example.nav.ui.Sign_in.DangNhapActivity;
+import com.example.nav.ui.Sale_purchase.GioHangActivity;
 import com.example.nav.ui.home.HomeViewModel;
-import com.example.nav.ui.home.ui.main.ChatActivity;
-import com.example.nav.ui.home.ui.main.LoaiSanPhamActivity;
-import com.example.nav.ui.home.ui.main.MessageActivity;
+import com.example.nav.ui.Sale_purchase.LoaiSanPhamActivity;
+import com.example.nav.ui.Chat.MessageActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -54,9 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
